@@ -606,6 +606,14 @@ h1, h2, h3 { line-height: 1.2; margin: 0 0 0.5em; }
   border-color: var(--accent-2);
   background: rgba(255,255,255,0.08);
 }
+.form-row input:-webkit-autofill,
+.form-row input:-webkit-autofill:hover,
+.form-row input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--text);
+  caret-color: var(--text);
+  transition: background-color 5000s ease-in-out 0s;
+  box-shadow: 0 0 0px 1000px rgba(23,29,51,0.9) inset;
+}
 .form-hint {
   margin-top: 14px;
   font-size: 0.9rem;
