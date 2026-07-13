@@ -238,6 +238,13 @@ h1, h2, h3 { line-height: 1.2; margin: 0 0 0.5em; }
   max-width: 640px;
   margin-bottom: 56px;
 }
+.section-title:has(+ .section-lead) { margin-bottom: 20px; }
+.section-lead {
+  color: var(--text-dim);
+  font-size: 1.05rem;
+  max-width: 620px;
+  margin: 0 0 40px;
+}
 
 .grid { display: grid; gap: 24px; }
 .grid-2 { grid-template-columns: repeat(2, 1fr); }
