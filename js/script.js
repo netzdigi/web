@@ -85,7 +85,9 @@ if (funnel) {
     } else {
       const name = step.querySelector('#funnelName');
       const email = step.querySelector('#funnelEmail');
-      nextBtn.disabled = !(name.value.trim() && email.value.trim());
+      const phone = step.querySelector('#funnelPhone');
+      const availability = step.querySelector('#funnelAvailability');
+      nextBtn.disabled = !(name.value.trim() && email.value.trim() && phone.value.trim() && availability.value.trim());
     }
   }
 
@@ -177,6 +179,8 @@ if (funnel) {
     const name = document.getElementById('funnelName').value.trim();
     const company = document.getElementById('funnelCompany').value.trim();
     const email = document.getElementById('funnelEmail').value.trim();
+    const phone = document.getElementById('funnelPhone').value.trim();
+    const availability = document.getElementById('funnelAvailability').value.trim();
     const pkg = packageInfo[recommendPackage()];
 
     nextBtn.disabled = true;
@@ -191,6 +195,8 @@ if (funnel) {
           name,
           company,
           email,
+          phone,
+          availability,
           business: answers.business || '',
           website: answers.website || '',
           need: answers.need || '',
@@ -225,16 +231,12 @@ form.addEventListener('submit', (e) => {
   e.preventDefault();
   const name = form.name.value.trim();
   const company = form.company.value.trim();
-  const phone = form.phone.value.trim();
-  const availability = form.availability.value.trim();
   const message = form.message.value.trim();
 
   const subject = `Запитване за уебсайт от ${name}`;
   const bodyLines = [
     `Име: ${name}`,
     company ? `Фирма: ${company}` : null,
-    `Телефон: ${phone}`,
-    `Кога е на разположение: ${availability}`,
     '',
     message
   ].filter(Boolean);

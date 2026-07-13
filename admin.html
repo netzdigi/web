@@ -68,6 +68,8 @@
           <th>Име</th>
           <th>Фирма</th>
           <th>Имейл</th>
+          <th>Телефон</th>
+          <th>На разположение</th>
           <th>Бизнес</th>
           <th>Уебсайт</th>
           <th>Нужда</th>
@@ -119,6 +121,8 @@
           <td class="strong">${escapeHtml(lead.name)}</td>
           <td>${escapeHtml(lead.company || '—')}</td>
           <td>${escapeHtml(lead.email)}</td>
+          <td>${escapeHtml(lead.phone || '—')}</td>
+          <td>${escapeHtml(lead.availability || '—')}</td>
           <td>${escapeHtml(lead.business || '—')}</td>
           <td>${escapeHtml(lead.website_status || '—')}</td>
           <td>${escapeHtml(lead.need || '—')}</td>
