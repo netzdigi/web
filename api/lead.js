@@ -1,7 +1,24 @@
-const { sql } = require('@vercel/postgres');
+const { Pool } = require('pg');
 
-async function ensureTable() {
-  await sql`
+const connectionString =
+  process.env.DATABASE_URL ||
+  process.env.POSTGRES_URL ||
+  process.env.DATABASE_URL_UNPOOLED ||
+  process.env.POSTGRES_URL_NON_POOLING;
+
+let pool;
+function getPool() {
+  if (!pool) {
+    if (!connectionString) {
+      throw new Error('No database connection string found in environment variables');
+    }
+    pool = new Pool({ connectionString, ssl: { rejectUnauthorized: false } });
+  }
+  return pool;
+}
+
+async function ensureTable(client) {
+  await client.query(`
     CREATE TABLE IF NOT EXISTS leads (
       id SERIAL PRIMARY KEY,
       created_at TIMESTAMPTZ DEFAULT now(),
@@ -13,11 +30,12 @@ async function ensureTable() {
       need TEXT,
       recommended_package TEXT
     )
-  `;
+  `);
 }
 
 module.exports = async function handler(req, res) {
   if (req.method === 'POST') {
+    let client;
     try {
       const { name, company, email, business, website, need, recommendedPackage } = req.body || {};
 
@@ -26,16 +44,20 @@ module.exports = async function handler(req, res) {
         return;
       }
 
-      await ensureTable();
-      await sql`
-        INSERT INTO leads (name, company, email, business, website_status, need, recommended_package)
-        VALUES (${name}, ${company || null}, ${email}, ${business || null}, ${website || null}, ${need || null}, ${recommendedPackage || null})
-      `;
+      client = await getPool().connect();
+      await ensureTable(client);
+      await client.query(
+        `INSERT INTO leads (name, company, email, business, website_status, need, recommended_package)
+         VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+        [name, company || null, email, business || null, website || null, need || null, recommendedPackage || null]
+      );
 
       res.status(200).json({ ok: true });
     } catch (err) {
       console.error(err);
-      res.status(500).json({ error: 'Server error' });
+      res.status(500).json({ error: 'Server error', detail: err.message });
+    } finally {
+      if (client) client.release();
     }
     return;
   }
@@ -46,13 +68,17 @@ module.exports = async function handler(req, res) {
       res.status(401).json({ error: 'Unauthorized' });
       return;
     }
+    let client;
     try {
-      await ensureTable();
-      const { rows } = await sql`SELECT * FROM leads ORDER BY created_at DESC LIMIT 200`;
+      client = await getPool().connect();
+      await ensureTable(client);
+      const { rows } = await client.query('SELECT * FROM leads ORDER BY created_at DESC LIMIT 200');
       res.status(200).json({ leads: rows });
     } catch (err) {
       console.error(err);
-      res.status(500).json({ error: 'Server error' });
+      res.status(500).json({ error: 'Server error', detail: err.message });
+    } finally {
+      if (client) client.release();
     }
     return;
   }
