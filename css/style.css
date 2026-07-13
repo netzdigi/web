@@ -428,6 +428,87 @@ h1, h2, h3 { line-height: 1.2; margin: 0 0 0.5em; }
   font-size: 0.95rem;
 }
 
+/* Lead funnel */
+.funnel {
+  max-width: 640px;
+  margin: 0 auto;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  box-shadow: var(--glass-shadow);
+  padding: 40px;
+}
+.funnel-progress {
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+.funnel-progress-bar {
+  display: block;
+  height: 100%;
+  width: 25%;
+  background: var(--accent-grad);
+  border-radius: 999px;
+  transition: width 0.5s var(--ease-apple);
+}
+.funnel-step-label {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  margin: 0 0 28px;
+}
+.funnel-step { display: none; }
+.funnel-step.is-active { display: block; animation: funnelFade 0.5s var(--ease-apple); }
+@keyframes funnelFade {
+  from { opacity: 0; transform: translateX(16px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.funnel-step h3 { font-size: 1.2rem; margin-bottom: 20px; }
+.funnel-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.funnel-option {
+  text-align: left;
+  padding: 16px 18px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--glass-border);
+  color: var(--text);
+  font-size: 0.95rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.3s var(--ease-apple), background 0.3s var(--ease-apple), transform 0.3s var(--ease-apple);
+}
+.funnel-option:hover { border-color: var(--accent-2); transform: translateY(-2px); }
+.funnel-option.is-selected {
+  border-color: var(--accent);
+  background: linear-gradient(135deg, rgba(139,92,246,0.28), rgba(34,211,238,0.18));
+  color: #fff;
+}
+.funnel-contact-fields .form-row:last-child { margin-bottom: 0; }
+.funnel-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 28px;
+}
+.funnel-nav .btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.funnel-nav .btn.is-hidden { visibility: hidden; }
+
+@media (max-width: 720px) {
+  .funnel { padding: 28px 22px; }
+  .funnel-options { grid-template-columns: 1fr; }
+}
+
 /* Contact */
 .contact-section { padding-bottom: 140px; }
 .contact-lead { color: var(--text-dim); max-width: 520px; }

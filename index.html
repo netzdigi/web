@@ -22,6 +22,7 @@
       <a href="#why-us">Защо ние</a>
       <a href="#portfolio">Портфолио</a>
       <a href="#packages">Пакети</a>
+      <a href="#lead-funnel">Оценка</a>
       <a href="#contact" class="nav-cta">Контакти</a>
     </nav>
     <button class="nav-toggle" id="navToggle" aria-label="Отвори меню" aria-expanded="false">
@@ -347,6 +348,73 @@
 
       </div>
       <p class="pricing-note reveal">Всеки проект е различен — изпратете запитване за индивидуална оферта, съобразена с бюджета и целите ви.</p>
+    </div>
+  </section>
+
+  <section class="section" id="lead-funnel">
+    <div class="container">
+      <p class="section-eyebrow reveal">Безплатна оценка</p>
+      <h2 class="section-title reveal">Открийте какво ви трябва за 30 секунди</h2>
+      <p class="section-lead reveal">Отговорете на няколко кратки въпроса за бизнеса ви и ще се свържем с персонално предложение.</p>
+
+      <div class="funnel reveal" id="funnel">
+        <div class="funnel-progress"><span class="funnel-progress-bar" id="funnelProgressBar"></span></div>
+        <p class="funnel-step-label" id="funnelStepLabel">Стъпка 1 от 4</p>
+
+        <div class="funnel-step is-active" data-step="1">
+          <h3>Какъв е вашият бизнес?</h3>
+          <div class="funnel-options" data-group="business">
+            <button type="button" class="funnel-option">Продукти / онлайн магазин</button>
+            <button type="button" class="funnel-option">Услуги</button>
+            <button type="button" class="funnel-option">Ресторант / хотел</button>
+            <button type="button" class="funnel-option">Друго</button>
+          </div>
+        </div>
+
+        <div class="funnel-step" data-step="2">
+          <h3>Имате ли уебсайт в момента?</h3>
+          <div class="funnel-options" data-group="website">
+            <button type="button" class="funnel-option">Не, нямам</button>
+            <button type="button" class="funnel-option">Да, но е остарял</button>
+            <button type="button" class="funnel-option">Да, доволен съм</button>
+            <button type="button" class="funnel-option">В процес на изграждане</button>
+          </div>
+        </div>
+
+        <div class="funnel-step" data-step="3">
+          <h3>От какво имате нужда най-много?</h3>
+          <div class="funnel-options" data-group="need">
+            <button type="button" class="funnel-option">Нов уебсайт</button>
+            <button type="button" class="funnel-option">Повече клиенти / SEO</button>
+            <button type="button" class="funnel-option">Онлайн магазин</button>
+            <button type="button" class="funnel-option">Автоматизация / CRM</button>
+          </div>
+        </div>
+
+        <div class="funnel-step" data-step="4">
+          <h3>Как да се свържем с вас?</h3>
+          <div class="funnel-contact-fields">
+            <div class="form-row">
+              <label for="funnelName">Име</label>
+              <input type="text" id="funnelName" placeholder="Вашето име">
+            </div>
+            <div class="form-row">
+              <label for="funnelCompany">Фирма</label>
+              <input type="text" id="funnelCompany" placeholder="Име на фирма (по избор)">
+            </div>
+            <div class="form-row">
+              <label for="funnelEmail">Имейл</label>
+              <input type="email" id="funnelEmail" placeholder="you@example.com">
+            </div>
+          </div>
+        </div>
+
+        <div class="funnel-nav">
+          <button type="button" class="btn btn-ghost is-hidden" id="funnelBack">Назад</button>
+          <button type="button" class="btn btn-primary" id="funnelNext" disabled>Напред</button>
+        </div>
+        <p class="form-hint" id="funnelHint"></p>
+      </div>
     </div>
   </section>
 
