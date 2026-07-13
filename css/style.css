@@ -495,6 +495,50 @@ h1, h2, h3 { line-height: 1.2; margin: 0 0 0.5em; }
   font-size: 0.95rem;
 }
 
+/* FAQ */
+.faq-list {
+  max-width: 780px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.faq-item {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  box-shadow: var(--glass-shadow);
+  padding: 6px 24px;
+  transition: border-color 0.3s var(--ease-apple);
+}
+.faq-item[open] { border-color: var(--glass-border-hover); }
+.faq-item summary {
+  cursor: pointer;
+  padding: 18px 30px 18px 0;
+  font-weight: 600;
+  list-style: none;
+  position: relative;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: "+";
+  position: absolute;
+  right: 0;
+  top: 16px;
+  font-size: 1.3rem;
+  color: var(--accent-2);
+  transition: transform 0.3s var(--ease-apple);
+}
+.faq-item[open] summary::after { transform: rotate(45deg); }
+.faq-item p {
+  color: var(--text-dim);
+  margin: 0 0 20px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
 /* Lead funnel */
 .funnel {
   max-width: 640px;
@@ -681,6 +725,27 @@ h1, h2, h3 { line-height: 1.2; margin: 0 0 0.5em; }
   transition: background-color 5000s ease-in-out 0s;
   box-shadow: 0 0 0px 1000px rgba(23,29,51,0.9) inset;
 }
+.consent-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 18px;
+  cursor: pointer;
+}
+.consent-row input {
+  margin-top: 3px;
+  accent-color: var(--accent);
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+.consent-row span {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+.consent-row a { color: var(--accent-2); text-decoration: underline; }
+
 .form-hint {
   margin-top: 14px;
   font-size: 0.9rem;
@@ -726,6 +791,31 @@ h1, h2, h3 { line-height: 1.2; margin: 0 0 0.5em; }
   font-size: 0.9rem;
 }
 .footer-inner a:not(.logo) { color: var(--accent-2); }
+.footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+
+/* Mobile sticky CTA */
+.mobile-cta {
+  display: none;
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  z-index: 90;
+  transition: transform 0.4s var(--ease-apple), opacity 0.4s var(--ease-apple);
+}
+.mobile-cta .btn {
+  box-shadow: 0 12px 32px -8px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.45);
+}
+.mobile-cta.is-hidden {
+  transform: translateY(120%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 720px) {
+  .mobile-cta { display: block; }
+  .contact-section, .funnel { scroll-margin-bottom: 90px; }
+}
 
 /* Reveal animation */
 .reveal {

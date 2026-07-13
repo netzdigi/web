@@ -14,6 +14,17 @@ nav.querySelectorAll('a').forEach(link => {
   });
 });
 
+// Mobile sticky CTA: hide once the funnel or contact section is reached
+const mobileCta = document.getElementById('mobileCta');
+const ctaHideTargets = [document.getElementById('lead-funnel'), document.getElementById('contact')].filter(Boolean);
+if (mobileCta && ctaHideTargets.length) {
+  const ctaObserver = new IntersectionObserver((entries) => {
+    const anyVisible = entries.some(entry => entry.isIntersecting);
+    mobileCta.classList.toggle('is-hidden', anyVisible);
+  }, { threshold: 0.15 });
+  ctaHideTargets.forEach(el => ctaObserver.observe(el));
+}
+
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // Scroll reveal, staggered per group so grids cascade in
@@ -87,7 +98,8 @@ if (funnel) {
       const email = step.querySelector('#funnelEmail');
       const phone = step.querySelector('#funnelPhone');
       const availability = step.querySelector('#funnelAvailability');
-      nextBtn.disabled = !(name.value.trim() && email.value.trim() && phone.value.trim() && availability.value.trim());
+      const consent = step.querySelector('#funnelConsent');
+      nextBtn.disabled = !(name.value.trim() && email.value.trim() && phone.value.trim() && availability.value.trim() && (!consent || consent.checked));
     }
   }
 

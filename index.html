@@ -5,8 +5,38 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WebCraft Bulgaria — Изработка на уебсайтове</title>
 <meta name="description" content="WebCraft Bulgaria изработва модерни уебсайтове, които изграждат силно онлайн присъствие за вашия бизнес.">
-<link rel="icon" href="data:,">
+<link rel="canonical" href="https://webcraft-bulgaria.vercel.app/">
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="css/style.css">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="WebCraft Bulgaria">
+<meta property="og:title" content="WebCraft Bulgaria — Изработка на уебсайтове">
+<meta property="og:description" content="Изработваме модерни, бързи и адаптивни уебсайтове, които помагат на българския бизнес да изглежда професионално онлайн и да привлича повече клиенти.">
+<meta property="og:image" content="https://webcraft-bulgaria.vercel.app/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="bg_BG">
+<meta property="og:url" content="https://webcraft-bulgaria.vercel.app/">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="WebCraft Bulgaria — Изработка на уебсайтове">
+<meta name="twitter:description" content="Изработваме модерни, бързи и адаптивни уебсайтове, които помагат на българския бизнес да привлича повече клиенти.">
+<meta name="twitter:image" content="https://webcraft-bulgaria.vercel.app/assets/og-image.jpg">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "WebCraft Bulgaria",
+  "description": "Изработка на модерни уебсайтове, автоматизация и CRM системи за бизнеса.",
+  "url": "https://webcraft-bulgaria.vercel.app/",
+  "email": "n.nedkov97@gmail.com",
+  "areaServed": "BG",
+  "address": { "@type": "PostalAddress", "addressCountry": "BG" }
+}
+</script>
 </head>
 <body>
 
@@ -389,7 +419,41 @@
     </div>
   </section>
 
-  <section class="section" id="lead-funnel">
+  <section class="section" id="faq">
+    <div class="container">
+      <p class="section-eyebrow reveal">Въпроси</p>
+      <h2 class="section-title reveal">Често задавани въпроси</h2>
+
+      <div class="faq-list reveal">
+        <details class="faq-item">
+          <summary>Колко струва изработката на уебсайт?</summary>
+          <p>Зависи от обхвата — вижте примерните пакети по-горе. След кратка консултация изготвяме точна оферта, съобразена с нуждите и бюджета ви.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Колко време отнема изработката?</summary>
+          <p>Лендинг сайт обикновено отнема 1–2 седмици, а по-обширен бизнес сайт или онлайн магазин — 3–4 седмици, в зависимост от обхвата и наличното съдържание.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Собственост ли е сайтът след завършване?</summary>
+          <p>Да. След пълно разплащане всички права върху изработения сайт се прехвърлят изцяло на вас.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Трябва ли да имам готови текстове и снимки?</summary>
+          <p>Не е задължително. Помагаме с оформянето на съдържанието, а при нужда предлагаме и подходящи изображения.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Какво се случва след пускането на сайта?</summary>
+          <p>Оставаме на разположение за техническа поддръжка, дребни промени и съвети — пакетите включват период на поддръжка, а след това е възможно продължение при договорка.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Мога ли да поискам промени по-късно?</summary>
+          <p>Разбира се — уебсайтът е ваш и можете да заявите промени или разширения по всяко време.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="lead-funnel">
     <div class="container">
       <p class="section-eyebrow reveal">Безплатна оценка</p>
       <h2 class="section-title reveal">Открийте какво ви трябва за 30 секунди</h2>
@@ -452,6 +516,10 @@
               <label for="funnelAvailability">Кога сте на разположение?</label>
               <input type="text" id="funnelAvailability" placeholder="Напр. делнични дни следобед, след 18:00 ч.">
             </div>
+            <label class="consent-row">
+              <input type="checkbox" id="funnelConsent">
+              <span>Съгласен съм данните ми да бъдат обработени съгласно <a href="privacy.html" target="_blank">Политиката за поверителност</a>.</span>
+            </label>
           </div>
         </div>
 
@@ -496,6 +564,10 @@
             <label for="message">Съобщение</label>
             <textarea id="message" name="message" rows="5" required placeholder="Разкажете ни накратко за проекта си"></textarea>
           </div>
+          <label class="consent-row">
+            <input type="checkbox" id="contactConsent" required>
+            <span>Съгласен съм данните ми да бъдат обработени съгласно <a href="privacy.html" target="_blank">Политиката за поверителност</a>.</span>
+          </label>
           <button type="submit" class="btn btn-primary btn-block">Изпрати запитване</button>
           <p class="form-hint" id="formHint"></p>
         </form>
@@ -516,10 +588,19 @@
   <div class="container footer-inner">
     <a href="#top" class="logo">Web<span>Craft</span> <small>Bulgaria</small></a>
     <p>&copy; <span id="year"></span> WebCraft Bulgaria. Всички права запазени.</p>
-    <a href="mailto:n.nedkov97@gmail.com">n.nedkov97@gmail.com</a>
+    <div class="footer-links">
+      <a href="privacy.html">Поверителност</a>
+      <a href="terms.html">Общи условия</a>
+      <a href="mailto:n.nedkov97@gmail.com">n.nedkov97@gmail.com</a>
+    </div>
   </div>
 </footer>
 
+<div class="mobile-cta" id="mobileCta">
+  <a href="#lead-funnel" class="btn btn-primary btn-block">Безплатна оценка</a>
+</div>
+
+<script defer src="/_vercel/insights/script.js"></script>
 <script src="js/script.js"></script>
 </body>
 </html>
