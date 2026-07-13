@@ -14,8 +14,19 @@ nav.querySelectorAll('a').forEach(link => {
   });
 });
 
-// Scroll reveal
-const revealEls = document.querySelectorAll('.reveal');
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Scroll reveal, staggered per group so grids cascade in
+const revealGroups = new Map();
+document.querySelectorAll('.reveal').forEach(el => {
+  const parent = el.parentElement;
+  const index = revealGroups.get(parent) || 0;
+  if (!prefersReducedMotion) {
+    el.style.setProperty('--reveal-delay', `${Math.min(index * 0.08, 0.4)}s`);
+  }
+  revealGroups.set(parent, index + 1);
+});
+
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -25,7 +36,33 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.15 });
 
-revealEls.forEach(el => observer.observe(el));
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Header glass state + hero parallax
+const header = document.getElementById('header');
+const heroGlow1 = document.querySelector('.hero-glow-1');
+const heroGlow2 = document.querySelector('.hero-glow-2');
+let ticking = false;
+
+function onScroll() {
+  const y = window.scrollY;
+  header.classList.toggle('is-scrolled', y > 8);
+
+  if (!prefersReducedMotion && heroGlow1 && heroGlow2) {
+    heroGlow1.style.transform = `translate3d(0, ${y * 0.18}px, 0)`;
+    heroGlow2.style.transform = `translate3d(0, ${y * -0.12}px, 0)`;
+  }
+  ticking = false;
+}
+
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    requestAnimationFrame(onScroll);
+    ticking = true;
+  }
+}, { passive: true });
+
+onScroll();
 
 // Footer year
 document.getElementById('year').textContent = new Date().getFullYear();
