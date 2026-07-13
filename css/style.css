@@ -258,6 +258,41 @@ h1, h2, h3 { line-height: 1.2; margin: 0 0 0.5em; }
   margin: 0;
 }
 
+/* Portfolio */
+.portfolio-grid { align-items: stretch; }
+.portfolio-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.portfolio-card:hover { transform: translateY(-4px); border-color: rgba(139,92,246,0.4); }
+.portfolio-shot {
+  display: block;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--surface-2);
+}
+.portfolio-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+.portfolio-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 20px 22px 24px;
+}
+.portfolio-name { font-weight: 700; font-size: 1.05rem; }
+.portfolio-url { color: var(--accent-2); font-size: 0.85rem; }
+.portfolio-desc { color: var(--text-dim); font-size: 0.9rem; margin-top: 6px; }
+
 /* Pricing */
 .pricing-card {
   background: var(--surface);
