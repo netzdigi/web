@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://webcraft-bulgaria.vercel.app/</loc>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://webcraft-bulgaria.vercel.app/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://webcraft-bulgaria.vercel.app/de/"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://webcraft-bulgaria.vercel.app/de/</loc>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://webcraft-bulgaria.vercel.app/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://webcraft-bulgaria.vercel.app/de/"/>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -12,6 +22,16 @@
   </url>
   <url>
     <loc>https://webcraft-bulgaria.vercel.app/terms.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://webcraft-bulgaria.vercel.app/de/privacy.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://webcraft-bulgaria.vercel.app/de/terms.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

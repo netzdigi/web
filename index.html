@@ -6,6 +6,10 @@
 <title>WebCraft Bulgaria — Изработка на уебсайтове</title>
 <meta name="description" content="WebCraft Bulgaria изработва модерни уебсайтове, които изграждат силно онлайн присъствие за вашия бизнес.">
 <link rel="canonical" href="https://webcraft-bulgaria.vercel.app/">
+<link rel="alternate" hreflang="bg" href="https://webcraft-bulgaria.vercel.app/">
+<link rel="alternate" hreflang="de" href="https://webcraft-bulgaria.vercel.app/de/">
+<link rel="alternate" hreflang="x-default" href="https://webcraft-bulgaria.vercel.app/">
+<script>document.cookie = 'lang=bg; path=/; max-age=31536000; samesite=lax';</script>
 
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="css/style.css">
@@ -54,6 +58,7 @@
       <a href="#packages">Пакети</a>
       <a href="#lead-funnel">Оценка</a>
       <a href="#contact" class="nav-cta">Контакти</a>
+      <a href="/de/" class="lang-switch" hreflang="de">DE</a>
     </nav>
     <button class="nav-toggle" id="navToggle" aria-label="Отвори меню" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -474,30 +479,30 @@
         <div class="funnel-step is-active" data-step="1">
           <h3>Какъв е вашият бизнес?</h3>
           <div class="funnel-options" data-group="business">
-            <button type="button" class="funnel-option">Продукти / онлайн магазин</button>
-            <button type="button" class="funnel-option">Услуги</button>
-            <button type="button" class="funnel-option">Ресторант / хотел</button>
-            <button type="button" class="funnel-option">Друго</button>
+            <button type="button" class="funnel-option" data-value="shop">Продукти / онлайн магазин</button>
+            <button type="button" class="funnel-option" data-value="services">Услуги</button>
+            <button type="button" class="funnel-option" data-value="hospitality">Ресторант / хотел</button>
+            <button type="button" class="funnel-option" data-value="other">Друго</button>
           </div>
         </div>
 
         <div class="funnel-step" data-step="2">
           <h3>Имате ли уебсайт в момента?</h3>
           <div class="funnel-options" data-group="website">
-            <button type="button" class="funnel-option">Не, нямам</button>
-            <button type="button" class="funnel-option">Да, но е остарял</button>
-            <button type="button" class="funnel-option">Да, доволен съм</button>
-            <button type="button" class="funnel-option">В процес на изграждане</button>
+            <button type="button" class="funnel-option" data-value="none">Не, нямам</button>
+            <button type="button" class="funnel-option" data-value="outdated">Да, но е остарял</button>
+            <button type="button" class="funnel-option" data-value="satisfied">Да, доволен съм</button>
+            <button type="button" class="funnel-option" data-value="in-progress">В процес на изграждане</button>
           </div>
         </div>
 
         <div class="funnel-step" data-step="3">
           <h3>От какво имате нужда най-много?</h3>
           <div class="funnel-options" data-group="need">
-            <button type="button" class="funnel-option">Нов уебсайт</button>
-            <button type="button" class="funnel-option">Повече клиенти / SEO</button>
-            <button type="button" class="funnel-option">Онлайн магазин</button>
-            <button type="button" class="funnel-option">Автоматизация / CRM</button>
+            <button type="button" class="funnel-option" data-value="new-site">Нов уебсайт</button>
+            <button type="button" class="funnel-option" data-value="seo">Повече клиенти / SEO</button>
+            <button type="button" class="funnel-option" data-value="shop">Онлайн магазин</button>
+            <button type="button" class="funnel-option" data-value="automation">Автоматизация / CRM</button>
           </div>
         </div>
 

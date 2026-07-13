@@ -119,6 +119,17 @@ h1, h2, h3 { line-height: 1.2; margin: 0 0 0.5em; }
   color: #05060a !important;
   font-weight: 600;
 }
+.lang-switch {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--glass-border);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--text-dim) !important;
+  transition: border-color 0.3s var(--ease-apple), color 0.3s var(--ease-apple);
+}
+.lang-switch:hover { border-color: var(--accent-2); color: var(--text) !important; }
 
 .nav-toggle {
   display: none;

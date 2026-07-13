@@ -1,3 +1,42 @@
+// i18n strings for the small set of dynamic, JS-generated texts.
+// Static markup text lives directly in index.html / de/index.html.
+const LANG = document.documentElement.lang === 'de' ? 'de' : 'bg';
+
+const STRINGS = {
+  bg: {
+    stepLabel: (current, total) => `Стъпка ${current} от ${total}`,
+    next: 'Напред',
+    submit: 'Изпрати',
+    sending: 'Изпращане...',
+    submitError: 'Възникна грешка при изпращането. Моля, опитайте отново или ни пишете на n.nedkov97@gmail.com.',
+    contactSubject: (name) => `Запитване за уебсайт от ${name}`,
+    contactNameLabel: 'Име',
+    contactCompanyLabel: 'Фирма',
+    mailOpening: 'Отваря се вашият имейл клиент...',
+    packages: {
+      start: { name: 'Старт', reason: 'Перфектна основа за начален онлайн старт — бърз лендинг сайт, който можете да разширявате постепенно.' },
+      business: { name: 'Бизнес', reason: 'Пълноценен сайт с SEO оптимизация и достатъчно раздели, за да представите бизнеса си професионално.' },
+      premium: { name: 'Премиум', reason: 'Разширена функционалност — онлайн магазин, интеграции и приоритетна поддръжка за по-сложни нужди.' }
+    }
+  },
+  de: {
+    stepLabel: (current, total) => `Schritt ${current} von ${total}`,
+    next: 'Weiter',
+    submit: 'Absenden',
+    sending: 'Wird gesendet...',
+    submitError: 'Beim Absenden ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder schreiben Sie uns an n.nedkov97@gmail.com.',
+    contactSubject: (name) => `Anfrage für eine Webseite von ${name}`,
+    contactNameLabel: 'Name',
+    contactCompanyLabel: 'Firma',
+    mailOpening: 'Ihr E-Mail-Programm wird geöffnet...',
+    packages: {
+      start: { name: 'Start', reason: 'Eine perfekte Grundlage für den Online-Start — eine schnelle Landingpage, die Sie nach und nach erweitern können.' },
+      business: { name: 'Business', reason: 'Eine vollwertige Webseite mit SEO-Optimierung und genug Bereichen, um Ihr Unternehmen professionell zu präsentieren.' },
+      premium: { name: 'Premium', reason: 'Erweiterte Funktionen — Online-Shop, Integrationen und priorisierter Support für komplexere Anforderungen.' }
+    }
+  }
+}[LANG];
+
 // Mobile nav toggle
 const navToggle = document.getElementById('navToggle');
 const nav = document.getElementById('nav');
@@ -106,9 +145,9 @@ if (funnel) {
   function updateStep() {
     steps.forEach((s, i) => s.classList.toggle('is-active', i === current));
     progressBar.style.width = `${((current + 1) / totalSteps) * 100}%`;
-    stepLabel.textContent = `Стъпка ${current + 1} от ${totalSteps}`;
+    stepLabel.textContent = STRINGS.stepLabel(current + 1, totalSteps);
     backBtn.classList.toggle('is-hidden', current === 0);
-    nextBtn.textContent = current === totalSteps - 1 ? 'Изпрати' : 'Напред';
+    nextBtn.textContent = current === totalSteps - 1 ? STRINGS.submit : STRINGS.next;
     updateNextState();
   }
 
@@ -119,7 +158,7 @@ if (funnel) {
         opt.addEventListener('click', () => {
           group.querySelectorAll('.funnel-option').forEach(o => o.classList.remove('is-selected'));
           opt.classList.add('is-selected');
-          answers[group.dataset.group] = opt.textContent;
+          answers[group.dataset.group] = { key: opt.dataset.value, label: opt.textContent.trim() };
           updateNextState();
         });
       });
@@ -136,47 +175,31 @@ if (funnel) {
     }
   });
 
-  const packageInfo = {
-    start: {
-      name: 'Старт',
-      reason: 'Перфектна основа за начален онлайн старт — бърз лендинг сайт, който можете да разширявате постепенно.'
-    },
-    business: {
-      name: 'Бизнес',
-      reason: 'Пълноценен сайт с SEO оптимизация и достатъчно раздели, за да представите бизнеса си професионално.'
-    },
-    premium: {
-      name: 'Премиум',
-      reason: 'Разширена функционалност — онлайн магазин, интеграции и приоритетна поддръжка за по-сложни нужди.'
-    }
-  };
-
   function recommendPackage() {
     const scores = { start: 0, business: 0, premium: 0 };
 
-    switch (answers.need) {
-      case 'Нов уебсайт': scores.start += 2; scores.business += 1; break;
-      case 'Повече клиенти / SEO': scores.business += 2; break;
-      case 'Онлайн магазин': scores.premium += 3; break;
-      case 'Автоматизация / CRM': scores.premium += 3; break;
+    switch ((answers.need || {}).key) {
+      case 'new-site': scores.start += 2; scores.business += 1; break;
+      case 'seo': scores.business += 2; break;
+      case 'shop': scores.premium += 3; break;
+      case 'automation': scores.premium += 3; break;
     }
-    switch (answers.website) {
-      case 'Не, нямам': scores.start += 1; break;
-      case 'Да, но е остарял': scores.business += 1; break;
-      case 'Да, доволен съм': scores.business += 1; scores.premium += 1; break;
-      case 'В процес на изграждане': scores.business += 1; break;
+    switch ((answers.website || {}).key) {
+      case 'none': scores.start += 1; break;
+      case 'outdated': scores.business += 1; break;
+      case 'satisfied': scores.business += 1; scores.premium += 1; break;
+      case 'in-progress': scores.business += 1; break;
     }
-    switch (answers.business) {
-      case 'Продукти / онлайн магазин': scores.premium += 2; break;
-      case 'Услуги': scores.business += 1; break;
-      case 'Ресторант / хотел': scores.business += 1; break;
-      case 'Друго': scores.start += 1; break;
+    switch ((answers.business || {}).key) {
+      case 'shop': scores.premium += 2; break;
+      case 'services': scores.business += 1; break;
+      case 'hospitality': scores.business += 1; break;
+      case 'other': scores.start += 1; break;
     }
 
     return Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
   }
 
-  const funnelResult = document.getElementById('funnelResult');
   const resultName = document.getElementById('funnelResultName');
   const resultPackage = document.getElementById('funnelResultPackage');
   const resultReason = document.getElementById('funnelResultReason');
@@ -193,10 +216,10 @@ if (funnel) {
     const email = document.getElementById('funnelEmail').value.trim();
     const phone = document.getElementById('funnelPhone').value.trim();
     const availability = document.getElementById('funnelAvailability').value.trim();
-    const pkg = packageInfo[recommendPackage()];
+    const pkg = STRINGS.packages[recommendPackage()];
 
     nextBtn.disabled = true;
-    nextBtn.textContent = 'Изпращане...';
+    nextBtn.textContent = STRINGS.sending;
     funnelHint.textContent = '';
 
     try {
@@ -209,10 +232,11 @@ if (funnel) {
           email,
           phone,
           availability,
-          business: answers.business || '',
-          website: answers.website || '',
-          need: answers.need || '',
-          recommendedPackage: pkg.name
+          business: (answers.business || {}).label || '',
+          website: (answers.website || {}).label || '',
+          need: (answers.need || {}).label || '',
+          recommendedPackage: pkg.name,
+          lang: LANG
         })
       });
 
@@ -223,9 +247,9 @@ if (funnel) {
       resultReason.textContent = pkg.reason;
       funnel.classList.add('is-submitted');
     } catch (err) {
-      funnelHint.textContent = 'Възникна грешка при изпращането. Моля, опитайте отново или ни пишете на n.nedkov97@gmail.com.';
+      funnelHint.textContent = STRINGS.submitError;
       nextBtn.disabled = false;
-      nextBtn.textContent = 'Изпрати';
+      nextBtn.textContent = STRINGS.submit;
     }
   });
 
@@ -245,15 +269,15 @@ form.addEventListener('submit', (e) => {
   const company = form.company.value.trim();
   const message = form.message.value.trim();
 
-  const subject = `Запитване за уебсайт от ${name}`;
+  const subject = STRINGS.contactSubject(name);
   const bodyLines = [
-    `Име: ${name}`,
-    company ? `Фирма: ${company}` : null,
+    `${STRINGS.contactNameLabel}: ${name}`,
+    company ? `${STRINGS.contactCompanyLabel}: ${company}` : null,
     '',
     message
   ].filter(Boolean);
 
   const mailto = `mailto:n.nedkov97@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
   window.location.href = mailto;
-  hint.textContent = 'Отваря се вашият имейл клиент...';
+  hint.textContent = STRINGS.mailOpening;
 });

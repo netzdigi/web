@@ -65,6 +65,7 @@
       <thead>
         <tr>
           <th>Дата</th>
+          <th>Език</th>
           <th>Име</th>
           <th>Фирма</th>
           <th>Имейл</th>
@@ -118,6 +119,7 @@
         const date = new Date(lead.created_at).toLocaleString('bg-BG');
         tr.innerHTML = `
           <td>${date}</td>
+          <td>${escapeHtml((lead.lang || '—').toUpperCase())}</td>
           <td class="strong">${escapeHtml(lead.name)}</td>
           <td>${escapeHtml(lead.company || '—')}</td>
           <td>${escapeHtml(lead.email)}</td>
