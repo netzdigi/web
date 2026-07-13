@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Заявки — WebCraft Bulgaria</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .admin-wrap { max-width: 1100px; margin: 0 auto; padding: 140px 24px 80px; }
+  .admin-auth {
+    max-width: 420px;
+    margin: 0 auto;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    box-shadow: var(--glass-shadow);
+    padding: 32px;
+  }
+  .admin-auth .form-row { margin-bottom: 16px; }
+  .admin-table-wrap {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    box-shadow: var(--glass-shadow);
+    overflow-x: auto;
+    padding: 8px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 0.88rem; white-space: nowrap; }
+  th, td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--glass-border); }
+  th { color: var(--accent-2); font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.04em; }
+  td { color: var(--text-dim); }
+  td.strong { color: var(--text); font-weight: 600; }
+  .admin-status { color: var(--text-dim); font-size: 0.9rem; margin: 16px 0; }
+  .admin-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 32px; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+
+<div class="bg-mesh" aria-hidden="true"></div>
+
+<div class="admin-wrap">
+  <div class="admin-header">
+    <h1 class="section-title" style="margin:0;">Постъпили заявки</h1>
+    <button type="button" class="btn btn-ghost" id="refreshBtn" style="display:none;">Презареди</button>
+  </div>
+
+  <div class="admin-auth" id="authBox">
+    <div class="form-row">
+      <label for="tokenInput">Административен код</label>
+      <input type="password" id="tokenInput" placeholder="Въведете ADMIN_TOKEN">
+    </div>
+    <button type="button" class="btn btn-primary btn-block" id="loadBtn">Зареди заявките</button>
+  </div>
+
+  <p class="admin-status" id="status"></p>
+
+  <div class="admin-table-wrap" id="tableWrap" style="display:none;">
+    <table>
+      <thead>
+        <tr>
+          <th>Дата</th>
+          <th>Име</th>
+          <th>Фирма</th>
+          <th>Имейл</th>
+          <th>Бизнес</th>
+          <th>Уебсайт</th>
+          <th>Нужда</th>
+          <th>Препоръчан пакет</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  const authBox = document.getElementById('authBox');
+  const tokenInput = document.getElementById('tokenInput');
+  const loadBtn = document.getElementById('loadBtn');
+  const refreshBtn = document.getElementById('refreshBtn');
+  const status = document.getElementById('status');
+  const tableWrap = document.getElementById('tableWrap');
+  const tableBody = document.getElementById('tableBody');
+
+  const savedToken = localStorage.getItem('adminToken');
+  if (savedToken) tokenInput.value = savedToken;
+
+  async function loadLeads() {
+    const token = tokenInput.value.trim();
+    if (!token) {
+      status.textContent = 'Моля, въведете административния код.';
+      return;
+    }
+    localStorage.setItem('adminToken', token);
+    status.textContent = 'Зареждане...';
+
+    try {
+      const res = await fetch(`/api/lead?token=${encodeURIComponent(token)}`);
+      if (res.status === 401) {
+        status.textContent = 'Грешен код.';
+        tableWrap.style.display = 'none';
+        return;
+      }
+      if (!res.ok) throw new Error('Request failed');
+
+      const data = await res.json();
+      tableBody.innerHTML = '';
+      data.leads.forEach(lead => {
+        const tr = document.createElement('tr');
+        const date = new Date(lead.created_at).toLocaleString('bg-BG');
+        tr.innerHTML = `
+          <td>${date}</td>
+          <td class="strong">${escapeHtml(lead.name)}</td>
+          <td>${escapeHtml(lead.company || '—')}</td>
+          <td>${escapeHtml(lead.email)}</td>
+          <td>${escapeHtml(lead.business || '—')}</td>
+          <td>${escapeHtml(lead.website_status || '—')}</td>
+          <td>${escapeHtml(lead.need || '—')}</td>
+          <td class="strong">${escapeHtml(lead.recommended_package || '—')}</td>
+        `;
+        tableBody.appendChild(tr);
+      });
+
+      status.textContent = data.leads.length ? '' : 'Все още няма постъпили заявки.';
+      tableWrap.style.display = data.leads.length ? 'block' : 'none';
+      authBox.style.display = 'none';
+      refreshBtn.style.display = 'inline-block';
+    } catch (err) {
+      status.textContent = 'Възникна грешка при зареждането.';
+    }
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  loadBtn.addEventListener('click', loadLeads);
+  refreshBtn.addEventListener('click', loadLeads);
+  tokenInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') loadLeads(); });
+
+  if (savedToken) loadLeads();
+</script>
+</body>
+</html>

@@ -504,6 +504,61 @@ h1, h2, h3 { line-height: 1.2; margin: 0 0 0.5em; }
 }
 .funnel-nav .btn.is-hidden { visibility: hidden; }
 
+.funnel-result { display: none; text-align: center; }
+.funnel.is-submitted .funnel-progress,
+.funnel.is-submitted .funnel-step-label,
+.funnel.is-submitted .funnel-step,
+.funnel.is-submitted .funnel-nav {
+  display: none;
+}
+.funnel.is-submitted .funnel-result {
+  display: block;
+  animation: funnelFade 0.6s var(--ease-apple);
+}
+.funnel-result-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: var(--accent-grad);
+  color: #05060a;
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.funnel-result h3 { font-size: 1.3rem; }
+.funnel-result > p { color: var(--text-dim); margin-bottom: 28px; }
+.funnel-recommend {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 28px;
+}
+.funnel-recommend-label {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  color: var(--accent-2);
+  font-weight: 600;
+  margin: 0 0 10px;
+}
+.funnel-recommend-name {
+  font-size: 1.6rem;
+  font-weight: 800;
+  background: var(--accent-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin: 0 0 12px;
+}
+.funnel-recommend-reason {
+  color: var(--text-dim);
+  font-size: 0.95rem;
+  margin: 0 0 24px;
+}
+
 @media (max-width: 720px) {
   .funnel { padding: 28px 22px; }
   .funnel-options { grid-template-columns: 1fr; }

@@ -122,7 +122,52 @@ if (funnel) {
     }
   });
 
-  nextBtn.addEventListener('click', () => {
+  const packageInfo = {
+    start: {
+      name: 'Старт',
+      reason: 'Перфектна основа за начален онлайн старт — бърз лендинг сайт, който можете да разширявате постепенно.'
+    },
+    business: {
+      name: 'Бизнес',
+      reason: 'Пълноценен сайт с SEO оптимизация и достатъчно раздели, за да представите бизнеса си професионално.'
+    },
+    premium: {
+      name: 'Премиум',
+      reason: 'Разширена функционалност — онлайн магазин, интеграции и приоритетна поддръжка за по-сложни нужди.'
+    }
+  };
+
+  function recommendPackage() {
+    const scores = { start: 0, business: 0, premium: 0 };
+
+    switch (answers.need) {
+      case 'Нов уебсайт': scores.start += 2; scores.business += 1; break;
+      case 'Повече клиенти / SEO': scores.business += 2; break;
+      case 'Онлайн магазин': scores.premium += 3; break;
+      case 'Автоматизация / CRM': scores.premium += 3; break;
+    }
+    switch (answers.website) {
+      case 'Не, нямам': scores.start += 1; break;
+      case 'Да, но е остарял': scores.business += 1; break;
+      case 'Да, доволен съм': scores.business += 1; scores.premium += 1; break;
+      case 'В процес на изграждане': scores.business += 1; break;
+    }
+    switch (answers.business) {
+      case 'Продукти / онлайн магазин': scores.premium += 2; break;
+      case 'Услуги': scores.business += 1; break;
+      case 'Ресторант / хотел': scores.business += 1; break;
+      case 'Друго': scores.start += 1; break;
+    }
+
+    return Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+  }
+
+  const funnelResult = document.getElementById('funnelResult');
+  const resultName = document.getElementById('funnelResultName');
+  const resultPackage = document.getElementById('funnelResultPackage');
+  const resultReason = document.getElementById('funnelResultReason');
+
+  nextBtn.addEventListener('click', async () => {
     if (current < totalSteps - 1) {
       current++;
       updateStep();
@@ -132,21 +177,38 @@ if (funnel) {
     const name = document.getElementById('funnelName').value.trim();
     const company = document.getElementById('funnelCompany').value.trim();
     const email = document.getElementById('funnelEmail').value.trim();
+    const pkg = packageInfo[recommendPackage()];
 
-    const subject = `Заявка за оценка от ${name}`;
-    const bodyLines = [
-      `Име: ${name}`,
-      company ? `Фирма: ${company}` : null,
-      `Имейл: ${email}`,
-      '',
-      `Тип бизнес: ${answers.business || '-'}`,
-      `Уебсайт в момента: ${answers.website || '-'}`,
-      `Основна нужда: ${answers.need || '-'}`
-    ].filter(Boolean);
+    nextBtn.disabled = true;
+    nextBtn.textContent = 'Изпращане...';
+    funnelHint.textContent = '';
 
-    const mailto = `mailto:n.nedkov97@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
-    window.location.href = mailto;
-    funnelHint.textContent = 'Отваря се вашият имейл клиент...';
+    try {
+      const res = await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          company,
+          email,
+          business: answers.business || '',
+          website: answers.website || '',
+          need: answers.need || '',
+          recommendedPackage: pkg.name
+        })
+      });
+
+      if (!res.ok) throw new Error('Request failed');
+
+      resultName.textContent = name;
+      resultPackage.textContent = pkg.name;
+      resultReason.textContent = pkg.reason;
+      funnel.classList.add('is-submitted');
+    } catch (err) {
+      funnelHint.textContent = 'Възникна грешка при изпращането. Моля, опитайте отново или ни пишете на n.nedkov97@gmail.com.';
+      nextBtn.disabled = false;
+      nextBtn.textContent = 'Изпрати';
+    }
   });
 
   updateStep();
