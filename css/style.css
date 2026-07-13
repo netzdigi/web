@@ -19,6 +19,7 @@
   --glass-shadow: 0 8px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.08);
   --glass-blur: blur(24px) saturate(180%);
   --ease-apple: cubic-bezier(.22,1,.36,1);
+  --danger: #fb7185;
 }
 
 * { box-sizing: border-box; }
@@ -194,6 +195,11 @@ h1, h2, h3 { line-height: 1.2; margin: 0 0 0.5em; }
   gap: 16px;
   flex-wrap: wrap;
 }
+.hero-trust {
+  margin: 20px 0 0;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
 
 /* Buttons */
 .btn {
@@ -327,6 +333,67 @@ h1, h2, h3 { line-height: 1.2; margin: 0 0 0.5em; }
   color: var(--text-dim);
   padding-left: 16px;
   margin: 0;
+}
+
+/* Problem / solution */
+.problem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+.problem-col {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  padding: 32px;
+  box-shadow: var(--glass-shadow);
+  transition: transform 0.5s var(--ease-apple), border-color 0.5s var(--ease-apple);
+}
+.problem-col:hover { transform: translateY(-6px); }
+.problem-col-bad { border-color: rgba(251,113,133,0.25); }
+.problem-col-bad:hover { border-color: rgba(251,113,133,0.5); }
+.problem-col-good { border-color: rgba(34,211,238,0.25); }
+.problem-col-good:hover { border-color: rgba(34,211,238,0.5); }
+.problem-col-label {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin: 0 0 22px;
+}
+.problem-col-bad .problem-col-label { color: var(--danger); }
+.problem-col-good .problem-col-label { color: var(--accent-2); }
+.problem-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.problem-list li {
+  position: relative;
+  padding-left: 30px;
+  color: var(--text-dim);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.problem-list li::before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-weight: 700;
+  font-size: 1rem;
+}
+.problem-list-bad li::before { content: "✕"; color: var(--danger); }
+.problem-list-good li::before { content: "✓"; color: var(--accent-2); }
+.problem-cta { text-align: center; }
+
+@media (max-width: 900px) {
+  .problem-grid { grid-template-columns: 1fr; }
 }
 
 /* Portfolio */
