@@ -225,12 +225,16 @@ form.addEventListener('submit', (e) => {
   e.preventDefault();
   const name = form.name.value.trim();
   const company = form.company.value.trim();
+  const phone = form.phone.value.trim();
+  const availability = form.availability.value.trim();
   const message = form.message.value.trim();
 
   const subject = `Запитване за уебсайт от ${name}`;
   const bodyLines = [
     `Име: ${name}`,
     company ? `Фирма: ${company}` : null,
+    `Телефон: ${phone}`,
+    `Кога е на разположение: ${availability}`,
     '',
     message
   ].filter(Boolean);
