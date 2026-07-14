@@ -123,8 +123,6 @@ const de = {
   portfolio: {
     eyebrow: 'Portfolio',
     title: 'Webseiten, die wir entwickelt haben',
-    showcaseLead: 'So sieht eine Website aus, die verkauft: ',
-    flagshipIndex: 3,
     items: [
       { href: 'https://www.nox-solartechnik.de', img: 'nox-solartechnik.png', alt: 'Webseite von NOX Solartechnik', name: 'NOX Solartechnik', url: 'nox-solartechnik.de', desc: 'Landingpage für Solaranlagen mit Fokus auf Anfragen und Vertrauen.' },
       { href: 'https://www.styrelli.com', img: 'styrelli.png', alt: 'Webseite von Styrelli', name: 'Styrelli', url: 'styrelli.com', desc: 'Online-Shop für ein Produkt mit klarer Präsentation und Verkaufsfokus.' },

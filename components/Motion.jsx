@@ -1,7 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
-import { motion, useMotionValue, useSpring } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 export const EASE = [0.22, 1, 0.36, 1];
 
@@ -66,46 +65,6 @@ export function StaggerItem({ children, as = 'div', className, lift = false, ...
       variants={staggerItemVariant}
       whileHover={lift ? { y: -6 } : undefined}
       transition={lift ? LIFT_SPRING : undefined}
-      className={className}
-      {...rest}
-    >
-      {children}
-    </MotionTag>
-  );
-}
-
-// Card that tilts in 3D toward the cursor, used for portfolio entries.
-// Participates in a parent StaggerGroup via the shared item variants.
-export function TiltCard({ children, className, maxTilt = 7, as = 'a', ...rest }) {
-  const MotionTag = motion[as] || motion.a;
-  const ref = useRef(null);
-  const rotateX = useMotionValue(0);
-  const rotateY = useMotionValue(0);
-  const springX = useSpring(rotateX, { stiffness: 220, damping: 18 });
-  const springY = useSpring(rotateY, { stiffness: 220, damping: 18 });
-
-  function handlePointerMove(event) {
-    const rect = ref.current?.getBoundingClientRect();
-    if (!rect) return;
-    const px = (event.clientX - rect.left) / rect.width - 0.5;
-    const py = (event.clientY - rect.top) / rect.height - 0.5;
-    rotateY.set(px * maxTilt);
-    rotateX.set(-py * maxTilt);
-  }
-
-  function handlePointerLeave() {
-    rotateX.set(0);
-    rotateY.set(0);
-  }
-
-  return (
-    <MotionTag
-      ref={ref}
-      variants={staggerItemVariant}
-      whileHover={{ y: -6 }}
-      style={{ rotateX: springX, rotateY: springY, transformPerspective: 900 }}
-      onPointerMove={handlePointerMove}
-      onPointerLeave={handlePointerLeave}
       className={className}
       {...rest}
     >

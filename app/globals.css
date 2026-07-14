@@ -407,41 +407,6 @@ h1, h2, h3 { line-height: 1.2; margin: 0 0 0.5em; }
   .problem-grid { grid-template-columns: 1fr; }
 }
 
-/* Portfolio */
-.portfolio-grid { align-items: stretch; }
-.portfolio-card {
-  display: flex;
-  flex-direction: column;
-  background: var(--glass-bg);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: var(--glass-shadow);
-  transition: transform 0.5s var(--ease-apple), border-color 0.5s var(--ease-apple), background 0.5s var(--ease-apple);
-}
-.portfolio-card:hover { transform: translateY(-6px); border-color: var(--glass-border-hover); background: var(--glass-bg-hover); }
-.portfolio-shot {
-  display: block;
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-  background: var(--surface-2);
-}
-.portfolio-shot img {
-  object-fit: cover;
-  object-position: top;
-  display: block;
-}
-.portfolio-info {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 20px 22px 24px;
-}
-.portfolio-name { font-weight: 700; font-size: 1.05rem; }
-.portfolio-url { color: var(--accent-2); font-size: 0.85rem; }
-.portfolio-desc { color: var(--text-dim); font-size: 0.9rem; margin-top: 6px; }
 
 /* Pricing */
 .pricing-card {
@@ -935,7 +900,7 @@ h1, h2, h3 { line-height: 1.2; margin: 0 0 0.5em; }
 }
 .hero-dust canvas { display: block; }
 
-/* Flagship project showcase (ContainerScroll) */
+/* Project showcase sequence (ContainerScroll, one per portfolio item) */
 .scroll-showcase {
   position: relative;
   display: flex;
@@ -943,13 +908,14 @@ h1, h2, h3 { line-height: 1.2; margin: 0 0 0.5em; }
   justify-content: center;
   /* Tall relative to the viewport on purpose: useScroll() maps its whole
      scroll range to progress 0→1, so the tilt/scale animation needs real
-     runway or it finishes within the first ~100px of scrolling. */
-  height: 190vh;
+     runway or it finishes within the first ~100px of scrolling. Kept
+     leaner than a single-showcase layout would use since this repeats
+     once per portfolio item. */
+  height: 135vh;
   padding: 8px;
-  margin-bottom: -8px;
 }
 @media (min-width: 768px) {
-  .scroll-showcase { height: 230vh; padding: 8px 32px; }
+  .scroll-showcase { height: 155vh; padding: 8px 32px; }
 }
 .scroll-showcase-inner {
   position: relative;
@@ -964,6 +930,14 @@ h1, h2, h3 { line-height: 1.2; margin: 0 0 0.5em; }
   margin: 0 auto;
   text-align: center;
 }
+.scroll-showcase-url {
+  color: var(--accent-2);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 10px;
+}
 .scroll-showcase-header h3 {
   font-size: clamp(1.5rem, 3.6vw, 2.3rem);
   font-weight: 700;
@@ -971,6 +945,13 @@ h1, h2, h3 { line-height: 1.2; margin: 0 0 0.5em; }
   line-height: 1.2;
 }
 .scroll-showcase-header .accent { display: inline-block; }
+.scroll-showcase-desc {
+  color: var(--text-dim);
+  font-size: 1rem;
+  font-weight: 400;
+  max-width: 560px;
+  margin: 14px auto 0;
+}
 .scroll-showcase-card {
   position: relative;
   max-width: 1100px;
@@ -994,3 +975,8 @@ h1, h2, h3 { line-height: 1.2; margin: 0 0 0.5em; }
   background: #0d0d12;
 }
 .scroll-showcase-frame img { object-fit: cover; object-position: top; }
+.scroll-showcase-link {
+  display: block;
+  position: absolute;
+  inset: 0;
+}

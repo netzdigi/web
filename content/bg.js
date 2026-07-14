@@ -123,8 +123,6 @@ const bg = {
   portfolio: {
     eyebrow: 'Портфолио',
     title: 'Сайтове, които изработихме',
-    showcaseLead: 'Ето как изглежда сайт, който продава: ',
-    flagshipIndex: 3,
     items: [
       { href: 'https://www.nox-solartechnik.de', img: 'nox-solartechnik.png', alt: 'Сайт на NOX Solartechnik', name: 'NOX Solartechnik', url: 'nox-solartechnik.de', desc: 'Лендинг за соларни системи, фокусиран върху запитвания и доверие.' },
       { href: 'https://www.styrelli.com', img: 'styrelli.png', alt: 'Сайт на Styrelli', name: 'Styrelli', url: 'styrelli.com', desc: 'Онлайн магазин за продукт с ясна презентация и фокус върху продажби.' },
