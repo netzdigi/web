@@ -4,34 +4,34 @@
   <url>
     <loc>https://webcraft-bulgaria.vercel.app/</loc>
     <xhtml:link rel="alternate" hreflang="bg" href="https://webcraft-bulgaria.vercel.app/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://webcraft-bulgaria.vercel.app/de/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://webcraft-bulgaria.vercel.app/de"/>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://webcraft-bulgaria.vercel.app/de/</loc>
+    <loc>https://webcraft-bulgaria.vercel.app/de</loc>
     <xhtml:link rel="alternate" hreflang="bg" href="https://webcraft-bulgaria.vercel.app/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://webcraft-bulgaria.vercel.app/de/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://webcraft-bulgaria.vercel.app/de"/>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://webcraft-bulgaria.vercel.app/privacy.html</loc>
+    <loc>https://webcraft-bulgaria.vercel.app/privacy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://webcraft-bulgaria.vercel.app/terms.html</loc>
+    <loc>https://webcraft-bulgaria.vercel.app/terms</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://webcraft-bulgaria.vercel.app/de/privacy.html</loc>
+    <loc>https://webcraft-bulgaria.vercel.app/deprivacy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://webcraft-bulgaria.vercel.app/de/terms.html</loc>
+    <loc>https://webcraft-bulgaria.vercel.app/determs</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
