@@ -36,9 +36,10 @@ export default function Hero({ content }) {
   const { scrollY } = useScroll();
   const glow1Y = useTransform(scrollY, [0, 800], [0, 800 * 0.18]);
   const glow2Y = useTransform(scrollY, [0, 800], [0, 800 * -0.12]);
+  const projectCount = content.portfolio.items.length;
 
   return (
-    <section className="hero">
+    <section className="hero" id="hero">
       <motion.div className="hero-glow hero-glow-1" style={{ y: glow1Y }} />
       <motion.div className="hero-glow hero-glow-2" style={{ y: glow2Y }} />
       <div className="container hero-inner">
@@ -83,7 +84,14 @@ export default function Hero({ content }) {
             {content.hero.ctaSecondary.label}
           </motion.a>
         </Reveal>
-        <Reveal as="p" className="hero-trust" delay={0.55}>{content.hero.trust}</Reveal>
+        <Reveal className="hero-stats" delay={0.55}>
+          {content.hero.stats.map((stat) => (
+            <div className="hero-stat" key={stat.label}>
+              <span className="hero-stat-value">{stat.value.replace('{count}', projectCount)}</span>
+              <span className="hero-stat-label">{stat.label}</span>
+            </div>
+          ))}
+        </Reveal>
       </div>
     </section>
   );

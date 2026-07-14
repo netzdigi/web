@@ -8,7 +8,11 @@ export default function MobileCta({ content }) {
   const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
-    const targets = ['lead-funnel', 'contact']
+    // Hidden while the hero (own CTA + stats row) or the funnel/contact
+    // sections are in view — avoids a redundant floating button right next
+    // to an identical CTA, and stops it overlapping the hero on short
+    // mobile viewports.
+    const targets = ['hero', 'lead-funnel', 'contact']
       .map((id) => document.getElementById(id))
       .filter(Boolean);
     if (!targets.length) return;

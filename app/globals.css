@@ -206,10 +206,32 @@ h1, h2, h3 { line-height: 1.2; margin: 0 0 0.5em; }
   gap: 16px;
   flex-wrap: wrap;
 }
-.hero-trust {
-  margin: 20px 0 0;
-  font-size: 0.85rem;
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  margin-top: 36px;
+}
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.hero-stat-value {
+  font-size: 1.3rem;
+  font-weight: 800;
+  background: var(--accent-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.hero-stat-label {
+  font-size: 0.82rem;
   color: var(--text-dim);
+}
+
+@media (max-width: 480px) {
+  .hero-stats { gap: 20px; }
 }
 
 /* Buttons */

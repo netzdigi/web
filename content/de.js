@@ -24,7 +24,7 @@ const de = {
       { href: '#packages', label: 'Pakete' },
       { href: '#lead-funnel', label: 'Kurztest' },
     ],
-    cta: { href: '#contact', label: 'Kontakt' },
+    cta: { href: '#lead-funnel', label: 'Kostenlose Analyse' },
     ariaOpenMenu: 'Menü öffnen',
     switch: { href: '/', label: 'BG', hreflang: 'bg' },
   },
@@ -38,9 +38,13 @@ const de = {
       { text: 'verkauft', accent: true },
     ],
     lead: 'Wir entwerfen und entwickeln moderne, schnelle und responsive Webseiten, die Ihrem Unternehmen helfen, online professionell aufzutreten und mehr Kunden zu gewinnen.',
-    ctaPrimary: { href: '#contact', label: 'Beratung anfragen' },
+    ctaPrimary: { href: '#lead-funnel', label: 'Kostenlose Analyse erhalten' },
     ctaSecondary: { href: '#services', label: 'Leistungen ansehen' },
-    trust: 'Kostenlose Beratung · Unverbindlich · Antwort innerhalb 1 Werktag',
+    stats: [
+      { value: '{count}+', label: 'umgesetzte Projekte' },
+      { value: 'Kostenlose', label: 'Beratung' },
+      { value: '1 Tag', label: 'maximale Antwortzeit' },
+    ],
   },
   problem: {
     eyebrow: 'Die Wahrheit über Ihre Online-Präsenz',
@@ -159,7 +163,7 @@ const de = {
     eyebrow: 'Fragen',
     title: 'Häufig gestellte Fragen',
     items: [
-      { q: 'Was kostet die Erstellung einer Webseite?', a: 'Das hängt vom Umfang ab — siehe die Beispielpakete oben. Nach einem kurzen Beratungsgespräch erstellen wir ein genaues Angebot, abgestimmt auf Ihre Bedürfnisse und Ihr Budget.' },
+      { q: 'Was kostet die Erstellung einer Webseite?', a: 'Das hängt vom Projektumfang ab — sehen Sie sich die Beispielpakete oben an, um einen Eindruck vom Leistungsumfang zu bekommen. Nach einem kurzen, kostenlosen Beratungsgespräch erstellen wir ein genaues Preisangebot, abgestimmt auf Ihre Bedürfnisse und Ihr Budget.' },
       { q: 'Wie lange dauert die Erstellung?', a: 'Eine Landingpage dauert in der Regel 1–2 Wochen, eine umfangreichere Business-Webseite oder ein Online-Shop 3–4 Wochen, je nach Umfang und vorhandenem Inhalt.' },
       { q: 'Gehört mir die Webseite nach Fertigstellung?', a: 'Ja. Nach vollständiger Bezahlung gehen alle Rechte an der erstellten Webseite vollständig auf Sie über.' },
       { q: 'Muss ich Texte und Bilder bereits fertig haben?', a: 'Nicht zwingend. Wir helfen bei der Erstellung der Inhalte und schlagen bei Bedarf passende Bilder vor.' },
