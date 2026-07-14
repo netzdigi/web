@@ -249,9 +249,6 @@ const de = {
     submitError: 'Beim Senden ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder schreiben Sie uns an n.nedkov97@gmail.com.',
     successTitle: 'Vielen Dank!',
     successText: 'Wir haben Ihre Anfrage erhalten und melden uns so schnell wie möglich bei Ihnen.',
-    directTitle: 'Direkter Kontakt',
-    directText: 'Bevorzugen Sie E-Mail? Schreiben Sie direkt an:',
-    smallText: 'Wir antworten in der Regel innerhalb von 1 Werktag.',
   },
   footer: {
     rights: 'Alle Rechte vorbehalten.',

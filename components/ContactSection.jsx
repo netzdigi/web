@@ -91,13 +91,6 @@ export default function ContactSection({ content }) {
               </form>
             )}
           </Reveal>
-
-          <Reveal className="contact-card" delay={0.1}>
-            <h3>{c.directTitle}</h3>
-            <p>{c.directText}</p>
-            <a className="contact-email" href="mailto:n.nedkov97@gmail.com">n.nedkov97@gmail.com</a>
-            <p className="contact-small">{c.smallText}</p>
-          </Reveal>
         </div>
       </div>
     </section>
