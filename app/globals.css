@@ -934,3 +934,63 @@ h1, h2, h3 { line-height: 1.2; margin: 0 0 0.5em; }
   pointer-events: none;
 }
 .hero-dust canvas { display: block; }
+
+/* Flagship project showcase (ContainerScroll) */
+.scroll-showcase {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Tall relative to the viewport on purpose: useScroll() maps its whole
+     scroll range to progress 0→1, so the tilt/scale animation needs real
+     runway or it finishes within the first ~100px of scrolling. */
+  height: 190vh;
+  padding: 8px;
+  margin-bottom: -8px;
+}
+@media (min-width: 768px) {
+  .scroll-showcase { height: 230vh; padding: 8px 32px; }
+}
+.scroll-showcase-inner {
+  position: relative;
+  width: 100%;
+  padding: 24px 0;
+}
+@media (min-width: 768px) {
+  .scroll-showcase-inner { padding: 48px 0; perspective: 1000px; }
+}
+.scroll-showcase-header {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+.scroll-showcase-header h3 {
+  font-size: clamp(1.5rem, 3.6vw, 2.3rem);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+}
+.scroll-showcase-header .accent { display: inline-block; }
+.scroll-showcase-card {
+  position: relative;
+  max-width: 1100px;
+  margin: -32px auto 0;
+  height: 24rem;
+  width: 100%;
+  border: 4px solid #34343e;
+  padding: 8px;
+  background: #16161d;
+  border-radius: 28px;
+}
+@media (min-width: 768px) {
+  .scroll-showcase-card { height: 32rem; padding: 18px; }
+}
+.scroll-showcase-frame {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: #0d0d12;
+}
+.scroll-showcase-frame img { object-fit: cover; object-position: top; }
