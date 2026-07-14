@@ -41,14 +41,6 @@ const de = {
     ctaPrimary: { href: '#contact', label: 'Beratung anfragen' },
     ctaSecondary: { href: '#services', label: 'Leistungen ansehen' },
     trust: 'Kostenlose Beratung · Unverbindlich · Antwort innerhalb 1 Werktag',
-    dust: [
-      { type: 'text', text: 'WEBCRAFT' },
-      { type: 'shape', shape: 'torus' },
-      { type: 'text', text: 'DESIGN' },
-      { type: 'shape', shape: 'sphere' },
-      { type: 'text', text: 'ERGEBNISSE' },
-      { type: 'shape', shape: 'box' },
-    ],
   },
   problem: {
     eyebrow: 'Die Wahrheit über Ihre Online-Präsenz',
