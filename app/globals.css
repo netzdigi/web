@@ -549,9 +549,32 @@ h1, h2, h3 { line-height: 1.2; margin: 0 0 0.5em; }
   line-height: 1.6;
 }
 
+/* Centered narrow-form sections (funnel + contact) — the box is centered
+   via margin: auto, so the heading above it needs the same treatment or
+   it reads as off-balance against the empty space beside the box. */
+#lead-funnel .section-eyebrow,
+#lead-funnel .section-title,
+#lead-funnel .section-lead,
+#contact .section-eyebrow,
+#contact .section-title,
+#contact .contact-lead {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 16px;
+}
+@media (max-width: 560px) {
+  .form-grid-2 { grid-template-columns: 1fr; }
+}
+
 /* Lead funnel */
 .funnel {
-  max-width: 640px;
+  max-width: 720px;
   margin: 0 auto;
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
@@ -673,8 +696,8 @@ h1, h2, h3 { line-height: 1.2; margin: 0 0 0.5em; }
 .contact-section { padding-bottom: 140px; }
 .contact-lead { color: var(--text-dim); max-width: 520px; }
 .contact-grid {
-  max-width: 640px;
-  margin-top: 40px;
+  max-width: 720px;
+  margin: 40px auto 0;
 }
 .contact-form {
   background: var(--glass-bg);

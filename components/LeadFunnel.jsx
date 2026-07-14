@@ -144,33 +144,37 @@ export default function LeadFunnel({ content }) {
                     >
                       <h3>{f.contactStep.title}</h3>
                       <div className="funnel-contact-fields">
-                        <div className="form-row">
-                          <label htmlFor="funnelName">{f.contactStep.nameLabel}</label>
-                          <input
-                            id="funnelName" type="text" placeholder={f.contactStep.namePlaceholder}
-                            value={fields.name} onChange={(e) => setFields((v) => ({ ...v, name: e.target.value }))}
-                          />
+                        <div className="form-grid-2">
+                          <div className="form-row">
+                            <label htmlFor="funnelName">{f.contactStep.nameLabel}</label>
+                            <input
+                              id="funnelName" type="text" placeholder={f.contactStep.namePlaceholder}
+                              value={fields.name} onChange={(e) => setFields((v) => ({ ...v, name: e.target.value }))}
+                            />
+                          </div>
+                          <div className="form-row">
+                            <label htmlFor="funnelCompany">{f.contactStep.companyLabel}</label>
+                            <input
+                              id="funnelCompany" type="text" placeholder={f.contactStep.companyPlaceholder}
+                              value={fields.company} onChange={(e) => setFields((v) => ({ ...v, company: e.target.value }))}
+                            />
+                          </div>
                         </div>
-                        <div className="form-row">
-                          <label htmlFor="funnelCompany">{f.contactStep.companyLabel}</label>
-                          <input
-                            id="funnelCompany" type="text" placeholder={f.contactStep.companyPlaceholder}
-                            value={fields.company} onChange={(e) => setFields((v) => ({ ...v, company: e.target.value }))}
-                          />
-                        </div>
-                        <div className="form-row">
-                          <label htmlFor="funnelEmail">{f.contactStep.emailLabel}</label>
-                          <input
-                            id="funnelEmail" type="email" placeholder={f.contactStep.emailPlaceholder}
-                            value={fields.email} onChange={(e) => setFields((v) => ({ ...v, email: e.target.value }))}
-                          />
-                        </div>
-                        <div className="form-row">
-                          <label htmlFor="funnelPhone">{f.contactStep.phoneLabel}</label>
-                          <input
-                            id="funnelPhone" type="tel" placeholder={f.contactStep.phonePlaceholder}
-                            value={fields.phone} onChange={(e) => setFields((v) => ({ ...v, phone: e.target.value }))}
-                          />
+                        <div className="form-grid-2">
+                          <div className="form-row">
+                            <label htmlFor="funnelEmail">{f.contactStep.emailLabel}</label>
+                            <input
+                              id="funnelEmail" type="email" placeholder={f.contactStep.emailPlaceholder}
+                              value={fields.email} onChange={(e) => setFields((v) => ({ ...v, email: e.target.value }))}
+                            />
+                          </div>
+                          <div className="form-row">
+                            <label htmlFor="funnelPhone">{f.contactStep.phoneLabel}</label>
+                            <input
+                              id="funnelPhone" type="tel" placeholder={f.contactStep.phonePlaceholder}
+                              value={fields.phone} onChange={(e) => setFields((v) => ({ ...v, phone: e.target.value }))}
+                            />
+                          </div>
                         </div>
                         <div className="form-row">
                           <label htmlFor="funnelAvailability">{f.contactStep.availabilityLabel}</label>

@@ -60,13 +60,15 @@ export default function ContactSection({ content }) {
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit}>
-                <div className="form-row">
-                  <label htmlFor="name">{c.nameLabel}</label>
-                  <input id="name" type="text" required placeholder={c.namePlaceholder} value={name} onChange={(e) => setName(e.target.value)} />
-                </div>
-                <div className="form-row">
-                  <label htmlFor="company">{c.companyLabel}</label>
-                  <input id="company" type="text" placeholder={c.companyPlaceholder} value={company} onChange={(e) => setCompany(e.target.value)} />
+                <div className="form-grid-2">
+                  <div className="form-row">
+                    <label htmlFor="name">{c.nameLabel}</label>
+                    <input id="name" type="text" required placeholder={c.namePlaceholder} value={name} onChange={(e) => setName(e.target.value)} />
+                  </div>
+                  <div className="form-row">
+                    <label htmlFor="company">{c.companyLabel}</label>
+                    <input id="company" type="text" placeholder={c.companyPlaceholder} value={company} onChange={(e) => setCompany(e.target.value)} />
+                  </div>
                 </div>
                 <div className="form-row">
                   <label htmlFor="email">{c.emailLabel}</label>
