@@ -9,8 +9,8 @@ const headlineContainer = {
 };
 
 const headlineWord = {
-  hidden: { opacity: 0, y: '0.6em', filter: 'blur(8px)' },
-  visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.6, ease: EASE } },
+  hidden: { opacity: 0, y: '0.4em' },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE } },
 };
 
 const CTA_SPRING = { type: 'spring', stiffness: 400, damping: 17 };

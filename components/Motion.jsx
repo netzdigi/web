@@ -8,8 +8,8 @@ export const EASE = [0.22, 1, 0.36, 1];
 const LIFT_SPRING = { type: 'spring', stiffness: 300, damping: 22 };
 
 const revealVariant = {
-  hidden: { opacity: 0, y: 32, scale: 0.96, filter: 'blur(10px)' },
-  visible: { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' },
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
 };
 
 // Single element reveal-on-scroll, mirrors the site's old CSS .reveal class.
@@ -21,7 +21,7 @@ export function Reveal({ children, delay = 0, as = 'div', className, ...rest }) 
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.9, delay, ease: EASE }}
+      transition={{ duration: 0.6, delay, ease: EASE }}
       className={className}
       {...rest}
     >
@@ -32,12 +32,12 @@ export function Reveal({ children, delay = 0, as = 'div', className, ...rest }) 
 
 const staggerContainerVariant = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.08 } },
+  visible: { transition: { staggerChildren: 0.07 } },
 };
 
 const staggerItemVariant = {
-  hidden: { opacity: 0, y: 32, scale: 0.96, filter: 'blur(10px)' },
-  visible: { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', transition: { duration: 0.7, ease: EASE } },
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE } },
 };
 
 // Grid/list container whose children cascade in one after another.
@@ -76,7 +76,7 @@ export function StaggerItem({ children, as = 'div', className, lift = false, ...
 
 // Card that tilts in 3D toward the cursor, used for portfolio entries.
 // Participates in a parent StaggerGroup via the shared item variants.
-export function TiltCard({ children, className, maxTilt = 7, as = 'a', ...rest }) {
+export function TiltCard({ children, className, maxTilt = 4, as = 'a', ...rest }) {
   const MotionTag = motion[as] || motion.a;
   const ref = useRef(null);
   const rotateX = useMotionValue(0);

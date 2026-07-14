@@ -898,27 +898,6 @@ h1, h2, h3 { line-height: 1.2; margin: 0 0 0.5em; }
   pointer-events: none;
 }
 
-/* Slow shimmer across gradient headline words */
-.accent {
-  background-size: 200% auto;
-  animation: accentShimmer 6s ease-in-out infinite;
-}
-@keyframes accentShimmer {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-/* Breathing glow on the featured pricing card */
-.pricing-featured {
-  animation: featuredGlow 4.5s ease-in-out infinite;
-}
-@keyframes featuredGlow {
-  0%, 100% { box-shadow: var(--shadow), var(--glass-shadow), 0 0 30px -14px rgba(139,92,246,0.5); }
-  50% { box-shadow: var(--shadow), var(--glass-shadow), 0 0 48px -8px rgba(139,92,246,0.75), 0 0 36px -12px rgba(34,211,238,0.4); }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .accent,
-  .pricing-featured { animation: none; }
   .scroll-progress { display: none; }
 }
