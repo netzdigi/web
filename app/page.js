@@ -1,4 +1,5 @@
 import HomePage from '../components/HomePage';
+import LanguageRedirect from '../components/LanguageRedirect';
 import content from '../content/bg';
 
 export const metadata = {
@@ -43,6 +44,7 @@ export default function Page() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <LanguageRedirect />
       <HomePage content={content} />
     </>
   );
