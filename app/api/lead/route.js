@@ -32,28 +32,32 @@ async function ensureTable(sqlClient) {
       website_status TEXT,
       need TEXT,
       recommended_package TEXT,
-      lang TEXT
+      lang TEXT,
+      message TEXT,
+      source TEXT
     )
   `;
   await sqlClient`ALTER TABLE leads ADD COLUMN IF NOT EXISTS phone TEXT`;
   await sqlClient`ALTER TABLE leads ADD COLUMN IF NOT EXISTS availability TEXT`;
   await sqlClient`ALTER TABLE leads ADD COLUMN IF NOT EXISTS lang TEXT`;
+  await sqlClient`ALTER TABLE leads ADD COLUMN IF NOT EXISTS message TEXT`;
+  await sqlClient`ALTER TABLE leads ADD COLUMN IF NOT EXISTS source TEXT`;
 }
 
 export async function POST(request) {
   try {
     const sqlClient = getSql();
     const body = await request.json();
-    const { name, company, email, phone, availability, business, website, need, recommendedPackage, lang } = body || {};
+    const { name, company, email, phone, availability, business, website, need, recommendedPackage, lang, message, source } = body || {};
 
-    if (!name || !email || !phone || !availability) {
+    if (!name || !email) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
     await ensureTable(sqlClient);
     await sqlClient`
-      INSERT INTO leads (name, company, email, phone, availability, business, website_status, need, recommended_package, lang)
-      VALUES (${name}, ${company || null}, ${email}, ${phone}, ${availability}, ${business || null}, ${website || null}, ${need || null}, ${recommendedPackage || null}, ${lang || null})
+      INSERT INTO leads (name, company, email, phone, availability, business, website_status, need, recommended_package, lang, message, source)
+      VALUES (${name}, ${company || null}, ${email}, ${phone || null}, ${availability || null}, ${business || null}, ${website || null}, ${need || null}, ${recommendedPackage || null}, ${lang || null}, ${message || null}, ${source || null})
     `;
 
     return NextResponse.json({ ok: true });

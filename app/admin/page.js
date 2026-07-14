@@ -84,6 +84,7 @@ export default function AdminPage() {
               <thead>
                 <tr>
                   <th>Дата</th>
+                  <th>Източник</th>
                   <th>Език</th>
                   <th>Име</th>
                   <th>Фирма</th>
@@ -94,12 +95,14 @@ export default function AdminPage() {
                   <th>Уебсайт</th>
                   <th>Нужда</th>
                   <th>Препоръчан пакет</th>
+                  <th>Съобщение</th>
                 </tr>
               </thead>
               <tbody>
                 {leads.map((lead) => (
                   <tr key={lead.id}>
                     <td>{new Date(lead.created_at).toLocaleString('bg-BG')}</td>
+                    <td>{lead.source === 'contact' ? 'Контакти' : lead.source === 'funnel' ? 'Оценка' : '—'}</td>
                     <td>{(lead.lang || '—').toUpperCase()}</td>
                     <td className="strong">{lead.name}</td>
                     <td>{lead.company || '—'}</td>
@@ -110,6 +113,7 @@ export default function AdminPage() {
                     <td>{lead.website_status || '—'}</td>
                     <td>{lead.need || '—'}</td>
                     <td className="strong">{lead.recommended_package || '—'}</td>
+                    <td style={{ whiteSpace: 'normal', minWidth: '220px' }}>{lead.message || '—'}</td>
                   </tr>
                 ))}
               </tbody>

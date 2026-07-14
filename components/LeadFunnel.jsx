@@ -68,6 +68,7 @@ export default function LeadFunnel({ content }) {
           need: answers.need?.label || '',
           recommendedPackage: pkg.name,
           lang: content.lang,
+          source: 'funnel',
         }),
       });
 
