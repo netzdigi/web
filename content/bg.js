@@ -41,6 +41,14 @@ const bg = {
     ctaPrimary: { href: '#contact', label: 'Заявете консултация' },
     ctaSecondary: { href: '#services', label: 'Вижте услугите' },
     trust: 'Безплатна консултация · Без ангажимент · Отговор до 1 работен ден',
+    dust: [
+      { type: 'text', text: 'WEBCRAFT' },
+      { type: 'shape', shape: 'torus' },
+      { type: 'text', text: 'ДИЗАЙН' },
+      { type: 'shape', shape: 'sphere' },
+      { type: 'text', text: 'РЕЗУЛТАТИ' },
+      { type: 'shape', shape: 'box' },
+    ],
   },
   problem: {
     eyebrow: 'Истината за онлайн присъствието ви',

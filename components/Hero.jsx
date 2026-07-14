@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { EASE, Reveal } from './Motion';
+import HeroDust from './HeroDust';
 
 const headlineContainer = {
   hidden: {},
@@ -41,6 +42,7 @@ export default function Hero({ content }) {
     <section className="hero">
       <motion.div className="hero-glow hero-glow-1" style={{ y: glow1Y }} />
       <motion.div className="hero-glow hero-glow-2" style={{ y: glow2Y }} />
+      <HeroDust sequence={content.hero.dust} />
       <div className="container hero-inner">
         <Reveal as="p" className="eyebrow">{content.hero.eyebrow}</Reveal>
         <motion.h1 variants={headlineContainer} initial="hidden" animate="visible">
