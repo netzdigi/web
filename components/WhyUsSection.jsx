@@ -9,7 +9,7 @@ export default function WhyUsSection({ content }) {
         <Reveal as="h2" className="section-title">{w.title}</Reveal>
         <StaggerGroup className="grid grid-2 why-grid">
           {w.items.map((item) => (
-            <StaggerItem className="why-item" key={item.title}>
+            <StaggerItem className="why-item" key={item.title} lift>
               <h3>{item.title}</h3>
               <p>{item.desc}</p>
             </StaggerItem>

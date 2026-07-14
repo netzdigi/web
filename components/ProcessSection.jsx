@@ -9,7 +9,7 @@ export default function ProcessSection({ content }) {
         <Reveal as="h2" className="section-title">{p.title}</Reveal>
         <StaggerGroup className="steps">
           {p.steps.map((step) => (
-            <StaggerItem className="step" key={step.num}>
+            <StaggerItem className="step" key={step.num} lift>
               <span className="step-num">{step.num}</span>
               <h3>{step.title}</h3>
               <p>{step.desc}</p>

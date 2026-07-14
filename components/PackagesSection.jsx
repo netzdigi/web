@@ -13,6 +13,7 @@ export default function PackagesSection({ content }) {
               as="article"
               className={`pricing-card${tier.featured ? ' pricing-featured' : ''}`}
               key={tier.name}
+              lift
             >
               {tier.badge && <p className="pricing-badge">{tier.badge}</p>}
               <h3>{tier.name}</h3>

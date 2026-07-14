@@ -10,13 +10,13 @@ export default function ProblemSection({ content }) {
         <Reveal as="p" className="section-lead">{p.lead}</Reveal>
 
         <StaggerGroup className="problem-grid">
-          <StaggerItem className="problem-col problem-col-bad">
+          <StaggerItem className="problem-col problem-col-bad" lift>
             <p className="problem-col-label">{p.badLabel}</p>
             <ul className="problem-list problem-list-bad">
               {p.badItems.map((item) => <li key={item}>{item}</li>)}
             </ul>
           </StaggerItem>
-          <StaggerItem className="problem-col problem-col-good">
+          <StaggerItem className="problem-col problem-col-good" lift>
             <p className="problem-col-label">{p.goodLabel}</p>
             <ul className="problem-list problem-list-good">
               {p.goodItems.map((item) => <li key={item}>{item}</li>)}

@@ -13,11 +13,13 @@ import ContactSection from './ContactSection';
 import Footer from './Footer';
 import MobileCta from './MobileCta';
 import SetHtmlLang from './SetHtmlLang';
+import ScrollProgress from './ScrollProgress';
 
 export default function HomePage({ content }) {
   return (
     <>
       <SetHtmlLang lang={content.htmlLang} />
+      <ScrollProgress />
       <div className="bg-mesh" aria-hidden="true" />
       <Header content={content} />
       <main id="top">

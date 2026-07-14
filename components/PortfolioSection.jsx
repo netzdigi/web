@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Reveal, StaggerGroup, StaggerItem } from './Motion';
+import { Reveal, StaggerGroup, TiltCard } from './Motion';
 
 export default function PortfolioSection({ content }) {
   const p = content.portfolio;
@@ -13,7 +13,7 @@ export default function PortfolioSection({ content }) {
         <Reveal as="h2" className="section-title">{p.title}</Reveal>
         <StaggerGroup className="grid grid-3 portfolio-grid">
           {p.items.map((item) => (
-            <StaggerItem as="a" className="portfolio-card" key={item.url} href={item.href} target="_blank" rel="noopener">
+            <TiltCard className="portfolio-card" key={item.url} href={item.href} target="_blank" rel="noopener">
               <span className="portfolio-shot">
                 <motion.span
                   style={{ display: 'block', width: '100%', height: '100%', position: 'relative' }}
@@ -34,7 +34,7 @@ export default function PortfolioSection({ content }) {
                 <span className="portfolio-url">{item.url}</span>
                 <span className="portfolio-desc">{item.desc}</span>
               </span>
-            </StaggerItem>
+            </TiltCard>
           ))}
         </StaggerGroup>
       </div>

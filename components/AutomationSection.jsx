@@ -11,7 +11,7 @@ export default function AutomationSection({ content }) {
         <Reveal as="p" className="section-lead">{a.lead}</Reveal>
         <StaggerGroup className="grid grid-3">
           {a.items.map((item) => (
-            <StaggerItem as="article" className="card" key={item.title}>
+            <StaggerItem as="article" className="card" key={item.title} lift>
               <div className="card-icon"><Icon name={item.icon} /></div>
               <h3>{item.title}</h3>
               <p>{item.desc}</p>
