@@ -26,3 +26,8 @@ yarn-error.log*
 
 # TypeScript
 *.tsbuildinfo
+
+# Claude Code tooling (agent skills, not app source)
+/.agents
+/.claude
+skills-lock.json
